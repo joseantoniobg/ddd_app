@@ -1,13 +1,15 @@
 import 'package:dartz/dartz.dart';
+import 'package:ddd_app/domain/core/failures.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../auth/email_address.dart';
 
 @immutable
 abstract class ValueObject<T> {
   const ValueObject();
   Either<ValueFailure<T>, T> get value;
+
+  bool isValid() => value.isRight();
 
   @override
   bool operator ==(Object o) {
